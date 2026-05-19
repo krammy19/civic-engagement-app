@@ -17,3 +17,18 @@ class Meeting:
 
     def to_dict(self):
         return asdict(self)
+
+
+@dataclass
+class AgendaItem:
+    file_number: Optional[str]
+    title: str
+    type: Optional[str]
+    agenda_note: Optional[str]
+    legislation_url: Optional[str]
+    action: Optional[str]
+    result: Optional[str]
+    version: Optional[str]
+
+    def to_dict(self):
+        return asdict(self)

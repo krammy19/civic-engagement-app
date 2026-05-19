@@ -2,16 +2,17 @@ from typing import List, Optional
 from urllib.parse import urljoin
 import time
 
+import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import ElementClickInterceptedException, StaleElementReferenceException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 
 from civic_scraper.connectors.base import CivicConnector
-from civic_scraper.models import Meeting
+from civic_scraper.models import Meeting, AgendaItem
 
 
 # Alternate lowercase header names some Legistar sites use for each canonical column
@@ -70,7 +71,7 @@ class LegistarConnector(CivicConnector):
                 )
                 time.sleep(1)
 
-            self._click_search(driver, wait)
+            self._click_search(driver)
 
             meetings: List[Meeting] = []
             remaining = limit
@@ -108,14 +109,15 @@ class LegistarConnector(CivicConnector):
                 )
                 dropdown_input.click()
 
-                option_xpath = f"//li[normalize-space() = '{option_text}']"
+                # Use presence_of_element_located (not clickable) so that options
+                # deep in a long list are found even when outside the visible viewport.
+                option_xpath = f"//li[contains(normalize-space(), '{option_text}')]"
                 option = wait.until(
-                    EC.element_to_be_clickable((By.XPATH, option_xpath))
+                    EC.presence_of_element_located((By.XPATH, option_xpath))
                 )
-                try:
-                    option.click()
-                except ElementClickInterceptedException:
-                    driver.execute_script("arguments[0].click();", option)
+                driver.execute_script("arguments[0].scrollIntoView(true);", option)
+                time.sleep(0.2)
+                driver.execute_script("arguments[0].click();", option)
                 return
 
             except StaleElementReferenceException as e:
@@ -124,10 +126,13 @@ class LegistarConnector(CivicConnector):
 
         raise last_error
 
-    def _click_search(self, driver, wait):
+    def _click_search(self, driver):
+        # Use a longer timeout here — body selection can trigger a loading overlay
+        # that temporarily blocks the button beyond the standard wait window.
+        search_wait = WebDriverWait(driver, 40)
         for _ in range(3):
             try:
-                search_button = wait.until(
+                search_button = search_wait.until(
                     EC.element_to_be_clickable(
                         (By.ID, "ctl00_ContentPlaceHolder1_btnSearch")
                     )
@@ -136,7 +141,11 @@ class LegistarConnector(CivicConnector):
                 return
             except StaleElementReferenceException:
                 time.sleep(0.5)
-        raise RuntimeError("Search button could not be clicked after retries")
+            except TimeoutException:
+                # Some Legistar sites auto-search on dropdown change and have no
+                # explicit search button; the table will already be populated.
+                return
+        raise RuntimeError("Search button stale after retries")
 
     def _extract_headers(self, table) -> list:
         """Return one header string per column, expanding colspan so indices align with td columns.
@@ -255,3 +264,72 @@ class LegistarConnector(CivicConnector):
 
         except Exception:
             return False
+
+    def get_meeting_details(self, meeting_details_url: str) -> List[AgendaItem]:
+        """Fetch and parse agenda items from a meeting details page.
+
+        Args:
+            meeting_details_url: URL to the meeting details page
+
+        Returns:
+            List of AgendaItem objects for significant items (those with File # entries)
+        """
+        try:
+            response = requests.get(meeting_details_url, timeout=30)
+            response.raise_for_status()
+            return self._parse_agenda_items(response.text)
+        except Exception:
+            return []
+
+    def _parse_agenda_items(self, html: str) -> List[AgendaItem]:
+        soup = BeautifulSoup(html, "html.parser")
+        table = soup.find("table", {"id": "ctl00_ContentPlaceHolder1_gridMain_ctl00"})
+        if not table:
+            return []
+
+        headers = self._extract_headers(table)
+        # Non-breaking spaces appear in header text on some Legistar sites
+        headers = [h.replace("\xa0", " ") for h in headers]
+        col_index = {h.lower(): i for i, h in enumerate(headers)}
+
+        def cell_text(cells, name):
+            idx = col_index.get(name)
+            if idx is None or idx >= len(cells):
+                return None
+            return cells[idx].get_text(" ", strip=True).replace("\xa0", " ") or None
+
+        items = []
+        tbodies = table.find_all("tbody") or [table]
+        for tbody in tbodies:
+            for row in tbody.find_all("tr", recursive=False):
+                if "rgPager" in (row.get("class") or []):
+                    continue
+                cells = row.find_all("td")
+                if not cells:
+                    continue
+
+                file_idx = col_index.get("file #")
+                if file_idx is None or file_idx >= len(cells):
+                    continue
+                legislation_url = self._extract_legislation_link(cells[file_idx])
+                if not legislation_url:
+                    continue
+
+                items.append(AgendaItem(
+                    file_number=cell_text(cells, "file #"),
+                    version=cell_text(cells, "ver."),
+                    agenda_note=cell_text(cells, "agenda note"),
+                    type=cell_text(cells, "type"),
+                    title=cell_text(cells, "title"),
+                    action=cell_text(cells, "action"),
+                    result=cell_text(cells, "result"),
+                    legislation_url=legislation_url,
+                ))
+
+        return items
+
+    def _extract_legislation_link(self, cell) -> Optional[str]:
+        link = cell.find("a")
+        if link and link.get("href") and "LegislationDetail.aspx" in link["href"]:
+            return urljoin(self.base_url, link["href"])
+        return None
