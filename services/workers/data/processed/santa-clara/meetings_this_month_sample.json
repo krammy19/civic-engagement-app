@@ -1,0 +1,50 @@
+[
+  {
+    "source": "legistar",
+    "jurisdiction": "Santa Clara",
+    "body": "City Council and Authorities Concurrent",
+    "date": "5/26/2026",
+    "time": "5:30 PM",
+    "location": "Hybrid Meeting\nCity Hall Council Chambers/Virtual\n1500 Warburton Avenue\nSanta Clara, CA 95050",
+    "meeting_details_url": null,
+    "agenda_url": null,
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "legistar",
+    "jurisdiction": "Santa Clara",
+    "body": "City Council and Authorities Concurrent",
+    "date": "5/19/2026",
+    "time": "5:30 PM",
+    "location": "Hybrid Meeting\nCity Hall Council Chambers/Virtual\n1500 Warburton Avenue\nSanta Clara, CA 95050",
+    "meeting_details_url": "https://santaclara.legistar.com/MeetingDetail.aspx?ID=1349153&GUID=5983280F-5281-4974-924B-3D9518FA3B2B&Options=info|&Search=",
+    "agenda_url": "https://santaclara.legistar.com/View.ashx?M=A&ID=1349153&GUID=5983280F-5281-4974-924B-3D9518FA3B2B",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "legistar",
+    "jurisdiction": "Santa Clara",
+    "body": "City Council and Authorities Concurrent",
+    "date": "5/6/2026",
+    "time": "6:15 PM",
+    "location": "Hybrid Meeting\nCity Hall Council Chambers/Virtual\n1500 Warburton Avenue\nSanta Clara, CA 95050",
+    "meeting_details_url": "https://santaclara.legistar.com/MeetingDetail.aspx?ID=1409854&GUID=5EF793CD-E644-4953-B1B4-7C1680F35068&Options=info|&Search=",
+    "agenda_url": "https://santaclara.legistar.com/View.ashx?M=A&ID=1409854&GUID=5EF793CD-E644-4953-B1B4-7C1680F35068",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "legistar",
+    "jurisdiction": "Santa Clara",
+    "body": "City Council and Authorities Concurrent",
+    "date": "5/5/2026",
+    "time": "5:30 PM",
+    "location": "Hybrid Meeting\nCity Hall Council Chambers/Virtual\n1500 Warburton Avenue\nSanta Clara, CA 95050",
+    "meeting_details_url": "https://santaclara.legistar.com/MeetingDetail.aspx?ID=1349152&GUID=C6A12A6A-54DA-476E-8777-D3BF7B9DC951&Options=info|&Search=",
+    "agenda_url": "https://santaclara.legistar.com/View.ashx?M=A&ID=1349152&GUID=C6A12A6A-54DA-476E-8777-D3BF7B9DC951",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

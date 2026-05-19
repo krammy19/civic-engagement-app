@@ -1,0 +1,50 @@
+[
+  {
+    "source": "legistar",
+    "jurisdiction": "Mountain View",
+    "body": "City Council",
+    "date": "5/26/2026",
+    "time": "5:00 PM",
+    "location": "Council Chambers and Video Conference, 500 Castro St., Mountain View, CA 94041 JOINT MEETING OF CITY COUNCIL (REGULAR) AND SHORELINE REGIONAL PARK COMMUNITY (SPECIAL)",
+    "meeting_details_url": null,
+    "agenda_url": null,
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "legistar",
+    "jurisdiction": "Mountain View",
+    "body": "City Council",
+    "date": "5/19/2026",
+    "time": "6:15 PM",
+    "location": "Community Center, Redwood Hall, 201 S. Rengstorff Ave., Mountain View, CA 94041 (Zoom Unavailable) SPECIAL MEETING",
+    "meeting_details_url": "https://mountainview.legistar.com/MeetingDetail.aspx?ID=1378494&GUID=5D93446A-806A-40D5-B4C3-8209D8947E19&Options=info|&Search=",
+    "agenda_url": "https://mountainview.legistar.com/View.ashx?M=A&ID=1378494&GUID=5D93446A-806A-40D5-B4C3-8209D8947E19",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "legistar",
+    "jurisdiction": "Mountain View",
+    "body": "City Council",
+    "date": "5/15/2026",
+    "time": "6:30 PM",
+    "location": "Council Chambers and Video Conference, 500 Castro St., Mountain View, CA 94041",
+    "meeting_details_url": null,
+    "agenda_url": null,
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "legistar",
+    "jurisdiction": "Mountain View",
+    "body": "City Council",
+    "date": "5/12/2026",
+    "time": "5:00 PM",
+    "location": "Council Chambers and Video Conference, 500 Castro St., Mountain View, CA 94041 REGULAR MEETING",
+    "meeting_details_url": "https://mountainview.legistar.com/MeetingDetail.aspx?ID=1352180&GUID=F0365661-DB50-468F-9435-CE472F810CE4&Options=info|&Search=",
+    "agenda_url": "https://mountainview.legistar.com/View.ashx?M=A&ID=1352180&GUID=F0365661-DB50-468F-9435-CE472F810CE4",
+    "minutes_url": null,
+    "video_url": null
+  }
+]

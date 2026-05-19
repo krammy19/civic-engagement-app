@@ -1,0 +1,38 @@
+[
+  {
+    "source": "legistar",
+    "jurisdiction": "San Francisco",
+    "body": "Board of Supervisors",
+    "date": "5/19/2026",
+    "time": "2:00 PM",
+    "location": "Legislative Chamber, Room 250\nCity Hall, 1 Dr. Carlton B. Goodlett Place\nSan Francisco, CA 94102-4689 Regular Meeting",
+    "meeting_details_url": "https://sfgov.legistar.com/MeetingDetail.aspx?ID=1415943&GUID=7D70C304-7F46-44FF-B2F2-7C18ABCC3716&Options=info|&Search=",
+    "agenda_url": "https://sfgov.legistar.com/View.ashx?M=A&ID=1415943&GUID=7D70C304-7F46-44FF-B2F2-7C18ABCC3716",
+    "minutes_url": null,
+    "video_url": null
+  },
+  {
+    "source": "legistar",
+    "jurisdiction": "San Francisco",
+    "body": "Board of Supervisors",
+    "date": "5/12/2026",
+    "time": "2:00 PM",
+    "location": "Legislative Chamber, Room 250\nCity Hall, 1 Dr. Carlton B. Goodlett Place\nSan Francisco, CA 94102-4689 Regular Meeting",
+    "meeting_details_url": "https://sfgov.legistar.com/MeetingDetail.aspx?ID=1411569&GUID=AC92E90F-4B00-4DAA-897A-48FBD3848759&Options=info|&Search=",
+    "agenda_url": "https://sfgov.legistar.com/View.ashx?M=A&ID=1411569&GUID=AC92E90F-4B00-4DAA-897A-48FBD3848759",
+    "minutes_url": "https://sfgov.legistar.com/View.ashx?M=M&ID=1411569&GUID=AC92E90F-4B00-4DAA-897A-48FBD3848759",
+    "video_url": "https://sfgov.legistar.com/#"
+  },
+  {
+    "source": "legistar",
+    "jurisdiction": "San Francisco",
+    "body": "Board of Supervisors",
+    "date": "5/5/2026",
+    "time": "2:00 PM",
+    "location": "Legislative Chamber, Room 250\nCity Hall, 1 Dr. Carlton B. Goodlett Place\nSan Francisco, CA 94102-4689 Regular Meeting",
+    "meeting_details_url": "https://sfgov.legistar.com/MeetingDetail.aspx?ID=1410517&GUID=62A5384F-5785-40C3-BA8B-F1802C538E0A&Options=info|&Search=",
+    "agenda_url": "https://sfgov.legistar.com/View.ashx?M=A&ID=1410517&GUID=62A5384F-5785-40C3-BA8B-F1802C538E0A",
+    "minutes_url": "https://sfgov.legistar.com/View.ashx?M=M&ID=1410517&GUID=62A5384F-5785-40C3-BA8B-F1802C538E0A",
+    "video_url": "https://sfgov.legistar.com/#"
+  }
+]
